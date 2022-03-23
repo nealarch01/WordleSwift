@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+var AllWords: Array<String> = InitWordsArray()
+
 struct ContentView: View {
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
-    @State private var word: String = "BACON"
+    @State private var word: String = generateWord()
     @State private var wordDict: [String: Int] = [:] // initialize as empty
     @State private var currentRow: Int = 0
     @State private var currentCol: Int = 0
     // using array of an array of strings to better represent the board
-    // while array of string is perfectly fine, I want to prevent the use of appending characters into the string
+    // while array of string is perfectly fine, I want to prevent the use of appending characters into the string causing size mismatching
     @State private var rowsData: Array<Array<String>> = [["A", "", "", "", ""],
                                                          ["", "", "", "", ""],
                                                          ["", "", "", "", ""],
@@ -70,13 +72,6 @@ struct ContentView: View {
         }
     }
     
-    func generateWord() -> String {
-        // read from file
-        return "BACON"
-    }
-    
-    
-    
     func setDarkMode() -> Void {
         
     }
@@ -86,4 +81,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+func generateWord() -> String {
+    // read from file
+    return AllWords.randomElement()!
 }
