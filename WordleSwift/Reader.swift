@@ -7,7 +7,7 @@
 
 import Foundation
 
-func InitWordsArray() -> Array<String> {
+func initWordsArray() -> Array<String> {
     var wordsArray: Array<String>
     let filePath = Bundle.main.path(forResource: "words-five-len", ofType: ".json")
     let urlPath = URL(fileURLWithPath: filePath!)

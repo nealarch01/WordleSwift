@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CharSlot: View {
     var currentChar: String
+    @Binding var slotColor: Color
     var body: some View {
         HStack {
             Spacer()
@@ -27,6 +28,6 @@ struct CharSlot: View {
 
 struct CharSlot_Previews: PreviewProvider {
     static var previews: some View {
-        CharSlot(currentChar: "")
+        CharSlot(currentChar: "", slotColor: .constant(Color.gray))
     }
 }

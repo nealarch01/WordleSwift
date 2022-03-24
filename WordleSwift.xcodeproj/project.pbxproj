@@ -17,6 +17,7 @@
 		BD5D079D27EAA99D00C45D7F /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D079C27EAA99D00C45D7F /* KeyboardButton.swift */; };
 		BD5D07A027EBBF2000C45D7F /* words-five-len.json in Resources */ = {isa = PBXBuildFile; fileRef = BD5D079F27EBBF2000C45D7F /* words-five-len.json */; };
 		BD5D07A227EBC2CA00C45D7F /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D07A127EBC2CA00C45D7F /* Reader.swift */; };
+		BDB8846627ECEB7200D8DFC1 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB8846527ECEB7200D8DFC1 /* Mapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		BD5D079C27EAA99D00C45D7F /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		BD5D079F27EBBF2000C45D7F /* words-five-len.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "words-five-len.json"; sourceTree = "<group>"; };
 		BD5D07A127EBC2CA00C45D7F /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
+		BDB8846527ECEB7200D8DFC1 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				BD5D078127EA7E8000C45D7F /* WordleSwiftApp.swift */,
+				BDB8846527ECEB7200D8DFC1 /* Mapper.swift */,
 				BD5D079827EAA8EF00C45D7F /* Keyboard.swift */,
 				BD5D079C27EAA99D00C45D7F /* KeyboardButton.swift */,
 				BD5D078327EA7E8000C45D7F /* ContentView.swift */,
@@ -168,6 +171,7 @@
 				BD5D079D27EAA99D00C45D7F /* KeyboardButton.swift in Sources */,
 				BD5D078427EA7E8000C45D7F /* ContentView.swift in Sources */,
 				BD5D079327EA9B2F00C45D7F /* CharSlot.swift in Sources */,
+				BDB8846627ECEB7200D8DFC1 /* Mapper.swift in Sources */,
 				BD5D079927EAA8EF00C45D7F /* Keyboard.swift in Sources */,
 				BD5D079127EA9AE200C45D7F /* Row.swift in Sources */,
 				BD5D078227EA7E8000C45D7F /* WordleSwiftApp.swift in Sources */,
