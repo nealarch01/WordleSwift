@@ -9,7 +9,8 @@ import SwiftUI
 
 struct KeyboardButton: View {
     var keyCharacter: String
-    
+    @Binding var inputSlot: String
+    var moveNextCol: () -> Void
     var body: some View {
         Button (action: KeyButtonPress) {
             Text(keyCharacter)
@@ -23,12 +24,13 @@ struct KeyboardButton: View {
         }
     }
     func KeyButtonPress() {
-        
+        inputSlot = keyCharacter;
+        moveNextCol()
     }
 }
 
 struct KeyboardButton_Previews: PreviewProvider {
     static var previews: some View {
-        KeyboardButton(keyCharacter: "")
+        KeyboardButton(keyCharacter: "", inputSlot: .constant(""), moveNextCol: {})
     }
 }

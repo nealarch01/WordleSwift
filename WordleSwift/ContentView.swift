@@ -17,7 +17,7 @@ struct ContentView: View {
     @State private var currentCol: Int = 0
     // using array of an array of strings to better represent the board
     // while array of string is perfectly fine, I want to prevent the use of appending characters into the string causing size mismatching
-    @State private var rowsData: Array<Array<String>> = [["A", "", "", "", ""],
+    @State private var rowsData: Array<Array<String>> = [["", "", "", "", ""],
                                                          ["", "", "", "", ""],
                                                          ["", "", "", "", ""],
                                                          ["", "", "", "", ""],
@@ -41,7 +41,7 @@ struct ContentView: View {
                 Row(currentText: $rowsData[3])
                 Row(currentText: $rowsData[4])
             }.padding(.trailing, 5).padding(.leading, 5)
-            Keyboard(currentText: $rowsData[currentRow])
+            Keyboard(currentText: $rowsData[currentRow], currentColumn: $currentCol)
             Spacer()
         }
     }
@@ -52,6 +52,8 @@ struct ContentView: View {
                    ["", "", "", "", ""],
                    ["", "", "", "", ""],
                    ["", "", "", "", ""]]
+        currentRow = 0
+        currentCol = 0
     }
     
     // enter clicked
@@ -63,13 +65,12 @@ struct ContentView: View {
         // 2. correct letter in wrong position
         // 3. incorrect letter
         
-        for (index, letterInput) in rowsData[currentRow].enumerated() {
-            
-            let wordChar = String(Array(word)[index])
-            if letterInput == wordChar {
-                // correct position
-            }
-        }
+//        for (index, letterInput) in rowsData[currentRow].enumerated() {
+//            let wordChar = String(Array(word)[index])
+//            if letterInput == wordChar {
+//
+//            }
+//        }
     }
     
     func setDarkMode() -> Void {
