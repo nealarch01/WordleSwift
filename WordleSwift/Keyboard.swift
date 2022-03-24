@@ -62,7 +62,7 @@ struct Keyboard: View {
                 KeyboardButton(keyCharacter: "N", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 KeyboardButton(keyCharacter: "M", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 // Special button
-                Button(action: nothing) {
+                Button(action: moveBack) {
                     Text("del")
                         .background(Rectangle()
                             .fill(Color.black.opacity(0.6))
@@ -77,11 +77,11 @@ struct Keyboard: View {
     }
     
     func moveNext() -> Void {
-        if currentColumn + 1 >= currentText.count {
-            currentColumn = currentText.count - 1
-            return;
-        }
         print(currentText)
+        if currentColumn + 1 >= currentText.count {
+            currentColumn = currentText.count - 1 // never exceed count
+            return; // end early to avoid incrementation
+        }
         currentColumn += 1
     }
     
@@ -89,12 +89,22 @@ struct Keyboard: View {
     func moveBack() -> Void {
         if currentColumn - 1 < 0 {
             currentColumn = 0
+            print(currentText)
+            currentText[currentColumn] = ""
             return;
+        } else if currentColumn == currentText.count - 1 && currentText[currentColumn] != "" {
+            // special case since currentColumn never exceeds count - 1
+            // no need to decrement in this case
+            currentText[currentColumn] = ""
+        } else {
+            currentColumn -= 1;
+            currentText[currentColumn] = "" // set back to empty
         }
-        currentColumn -= 1;
+        print(currentText)
     }
     
-    func nothing() {
+    
+    func nothing() { // will eventually remove this function later
         return;
     }
 }
