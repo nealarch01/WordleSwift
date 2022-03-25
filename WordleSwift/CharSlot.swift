@@ -16,11 +16,12 @@ struct CharSlot: View {
             Text(currentChar == "" ? " " : currentChar)
             // purpose of putting an empty space to apply max padding (when there is not text in a box, the padding of each box causes uneven spacing
                 .background(Rectangle()
-                    .fill(Color.gray.opacity(0.2))
+                    .fill(slotColor.opacity(0.9))
                     .frame(width: 70, height: 70)
                     .border(Color.gray, width: 3)
                 )
                 .font(.system(size: 36, weight: .heavy))
+                .foregroundColor(Color.white)
             Spacer()
         }
     }

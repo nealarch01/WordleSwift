@@ -85,6 +85,7 @@ struct ContentView: View {
         if (WordMap[combinedString] != 1) { // invalid word
             return
         }
+        
         /*
         for (index, letterInput) in rowsData[currentRow].enumerated() {
             // first reject a word that doesn't exist in the dictionary or an empty character is found
