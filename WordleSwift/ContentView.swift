@@ -35,8 +35,8 @@ struct ContentView: View {
                                                          ["", "", "", "", ""]]
     @State private var infoText: String = ""
     @State private var isGameComplete: Bool = false
-    private let rowCount: Int = 6
-    private let columnCount: Int = 6
+    private let rowCount: Int = 5
+    private let columnCount: Int = 5
     
     var body: some View {
         VStack(spacing: 50) {
@@ -88,7 +88,10 @@ struct ContentView: View {
     
     // enter clicked
     func checkAnswer() -> Void {
-        
+        if isGameComplete == true {
+            return
+        }
+        infoText = "" // set back to empty at the start of every search
         // 3 cases
         // 1. correct letter in positions
         // 2. correct letter in wrong position
@@ -96,12 +99,14 @@ struct ContentView: View {
         // loop through the word that the user has entered
         
         // first check if the word exists in the list
-        var combinedString: String = "" // initialize as empty
+        var combinedString: String = "" // initialize as empty // this variable holds the user input string
+        
+        // for loop to combine all characters (of string type) into one string
         for letterInput in rowsData[currentRow] {
             combinedString += letterInput
         }
         if (WordMap[combinedString] != 1) { // invalid word
-            infoText = "The word you entered is not a valid word"
+            infoText = "The word you entered is not part of the word list"
             return
         }
         
@@ -113,10 +118,14 @@ struct ContentView: View {
             }
             wordMap[String(letter)]!.append(index)
         }
+        
         // Algorithm
         // Iterate through user's string
         //  - Get the wordmap (dictionary) value of the letter (an array of indices of the correct word's letters)
         //  - Check if the current index exists in the indices array
+        //  - If the current iteration index exists as well as the character, then set the box to green and increment correct count
+        //  - If the current iteration index does not exist but the character exists in the word map, then set box to yellow
+        //  - If correct count == 5 at the end of the loop, then the right word has been found
         var correctCount: Int = 0
         for (currentIndex, letter) in combinedString.enumerated() {
             let mapValue = wordMap[String(letter)] ?? nil
@@ -132,15 +141,18 @@ struct ContentView: View {
             }
         } // end of for loop iteration
         
+        
         if correctCount >= 5 { // the user found the word
             infoText = "You guessed the word!"
             isGameComplete = true
-            return
-        } else {
-            if currentRow < rowCount {
+        } else { // check if the user reaches at the end of the board since user didn't get the question right
+            if currentRow + 1 < rowCount { // check if array is going out of bounds
                 currentRow += 1
                 currentCol = 0
             } else {
+                // set to last index of row and column for bounds safety
+                currentRow = rowCount - 1
+                currentCol = columnCount - 1
                 isGameComplete = true
                 infoText = "You ran out of tries. The word is \(correctWord)"
             }
