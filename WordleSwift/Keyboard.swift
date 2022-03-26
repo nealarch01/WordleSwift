@@ -76,7 +76,7 @@ struct Keyboard: View {
             }
         }
     }
-    
+    // move to the next column, not row
     func moveNext() -> Void {
 //        print(currentText)
         if isComplete == true {
@@ -90,6 +90,7 @@ struct Keyboard: View {
     }
     
     // for back space key
+    // move to the previous column, not row
     func moveBack() -> Void {
         if isComplete == true {
             return
@@ -107,11 +108,6 @@ struct Keyboard: View {
             currentText[currentColumn] = "" // set back to empty
         }
 //        print(currentText)
-    }
-    
-    
-    func nothing() { // will eventually remove this function later
-        return;
     }
 }
 

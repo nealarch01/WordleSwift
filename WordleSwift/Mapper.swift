@@ -10,7 +10,7 @@ import Foundation
 func mapAllWords(word_list: Array<String>) -> Dictionary<String, Int> {
     var wordMap: Dictionary<String, Int> = [:]
     for _word in word_list {
-        wordMap[_word.uppercased()] = 1
+        wordMap[_word.uppercased()] = 1 // turn the word into an upper cased character
     }
     return wordMap
 }
