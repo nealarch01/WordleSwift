@@ -34,6 +34,7 @@ struct ContentView: View {
                                                          ["", "", "", "", ""],
                                                          ["", "", "", "", ""]]
     @State private var infoText: String = ""
+    @State private var isGameComplete: Bool = false
     private let rowCount: Int = 6
     private let columnCount: Int = 6
     
@@ -59,7 +60,7 @@ struct ContentView: View {
                 Row(currentText: $rowsData[3], rowSlotColors: $rowsColors[3])
                 Row(currentText: $rowsData[4], rowSlotColors: $rowsColors[4])
             }.padding(.trailing, 5).padding(.leading, 5)
-            Keyboard(currentText: $rowsData[currentRow], currentColumn: $currentCol, checkAns: checkAnswer)
+            Keyboard(currentText: $rowsData[currentRow], currentColumn: $currentCol, isComplete: $isGameComplete, checkAns: checkAnswer)
             Spacer()
         }
     }
@@ -67,6 +68,7 @@ struct ContentView: View {
     // when reset button is pressed - board will reset and so will state of current row and column
     // also a new word will be generated
     func resetBoard() -> Void {
+        isGameComplete = false
         rowsData = [["", "", "", "", ""],
                    ["", "", "", "", ""],
                    ["", "", "", "", ""],
@@ -132,12 +134,14 @@ struct ContentView: View {
         
         if correctCount >= 5 { // the user found the word
             infoText = "You guessed the word!"
+            isGameComplete = true
             return
         } else {
             if currentRow < rowCount {
                 currentRow += 1
                 currentCol = 0
             } else {
+                isGameComplete = true
                 infoText = "You ran out of tries. The word is \(correctWord)"
             }
         }

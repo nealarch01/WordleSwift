@@ -10,8 +10,8 @@ import SwiftUI
 struct Keyboard: View {
     @Binding var currentText: Array<String>
     @Binding var currentColumn: Int // index of the array we are modifying
+    @Binding var isComplete: Bool
     var checkAns: () -> Void
-    @State private var keyPressed: String = "" // initialize as empty
     var body: some View {
         VStack(spacing: 60) {
             HStack(spacing: 28) {
@@ -79,6 +79,9 @@ struct Keyboard: View {
     
     func moveNext() -> Void {
 //        print(currentText)
+        if isComplete == true {
+            return
+        }
         if currentColumn + 1 >= currentText.count {
             currentColumn = currentText.count - 1 // never exceed count
             return; // end early to avoid incrementation
@@ -88,6 +91,9 @@ struct Keyboard: View {
     
     // for back space key
     func moveBack() -> Void {
+        if isComplete == true {
+            return
+        }
         if currentColumn - 1 < 0 {
             currentColumn = 0
             currentText[currentColumn] = ""
@@ -111,6 +117,6 @@ struct Keyboard: View {
 
 struct Keyboard_Previews: PreviewProvider {
     static var previews: some View {
-        Keyboard(currentText: .constant(["", "", "", ""]), currentColumn: .constant(0), checkAns: {})
+        Keyboard(currentText: .constant(["", "", "", ""]), currentColumn: .constant(0), isComplete: .constant(false), checkAns: {} )
     }
 }
