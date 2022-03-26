@@ -10,6 +10,7 @@ import SwiftUI
 struct Keyboard: View {
     @Binding var currentText: Array<String>
     @Binding var currentColumn: Int // index of the array we are modifying
+    var checkAns: () -> Void
     @State private var keyPressed: String = "" // initialize as empty
     var body: some View {
         VStack(spacing: 60) {
@@ -44,7 +45,7 @@ struct Keyboard: View {
             }
             HStack(spacing: 28) {
                 // Special button
-                Button(action: nothing) {
+                Button(action: checkAns) {
                     Text("enter")
                         .background(Rectangle()
                             .fill(Color.black.opacity(0.6))
@@ -77,7 +78,7 @@ struct Keyboard: View {
     }
     
     func moveNext() -> Void {
-        print(currentText)
+//        print(currentText)
         if currentColumn + 1 >= currentText.count {
             currentColumn = currentText.count - 1 // never exceed count
             return; // end early to avoid incrementation
@@ -89,7 +90,6 @@ struct Keyboard: View {
     func moveBack() -> Void {
         if currentColumn - 1 < 0 {
             currentColumn = 0
-            print(currentText)
             currentText[currentColumn] = ""
             return;
         } else if currentColumn == currentText.count - 1 && currentText[currentColumn] != "" {
@@ -100,7 +100,7 @@ struct Keyboard: View {
             currentColumn -= 1;
             currentText[currentColumn] = "" // set back to empty
         }
-        print(currentText)
+//        print(currentText)
     }
     
     
@@ -111,6 +111,6 @@ struct Keyboard: View {
 
 struct Keyboard_Previews: PreviewProvider {
     static var previews: some View {
-        Keyboard(currentText: .constant(["", "", "", ""]), currentColumn: .constant(0))
+        Keyboard(currentText: .constant(["", "", "", ""]), currentColumn: .constant(0), checkAns: {})
     }
 }
