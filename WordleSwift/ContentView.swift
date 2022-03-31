@@ -42,12 +42,12 @@ struct ContentView: View {
         VStack(spacing: 50) {
             VStack {
                 HStack {
-                    Button(action: resetBoard) {
+                    Button(action: setDarkMode) {
                         Text("Set Dark Mode")
                     }
                     Spacer()
                     Button(action: resetBoard) {
-                        Text("Reset Board")
+                        Text("New Game")
                     }
                 }.padding(.leading, 10).padding(.trailing, 10).padding(.top, 40)
                 Text(infoText)
@@ -60,9 +60,12 @@ struct ContentView: View {
                 Row(currentText: $rowsData[3], rowSlotColors: $rowsColors[3])
                 Row(currentText: $rowsData[4], rowSlotColors: $rowsColors[4])
             }.padding(.trailing, 5).padding(.leading, 5)
-            Keyboard(currentText: $rowsData[currentRow], currentColumn: $currentCol, isComplete: $isGameComplete, checkAns: checkAnswer)
+            Keyboard(currentText: $rowsData[currentRow],
+                     currentColumn: $currentCol,
+                     isComplete: $isGameComplete,
+                     checkAns: checkAnswer)
             Spacer()
-        }
+        }.background((isDarkMode) ? Color.black : Color.white)
     }
     
     // when reset button is pressed - board will reset and so will state of current row and column
@@ -161,7 +164,7 @@ struct ContentView: View {
     
     // function to be implemented soon to change the display to dark mode
     func setDarkMode() -> Void {
-        
+        isDarkMode = !isDarkMode // set to the opposite of each other every click
     }
 }
 
