@@ -14,14 +14,12 @@ struct KeyboardButton: View {
     var body: some View {
         Button (action: KeyButtonPress) {
             Text(keyCharacter)
-                .background(Rectangle()
-                    .fill(Color.black.opacity(0.6))
-                    .frame(width: 33, height: 68)
-                    .cornerRadius(10)
-                )
+                .frame(width: 34, height: 68, alignment: .center)
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(Color.white)
-        }
+        }.background(Color.gray)
+            .cornerRadius(10)
+        
     }
     func KeyButtonPress() {
         // if we are at the last index (we don't exceed past array.count - 1), check if the current slot is empty
@@ -35,6 +33,6 @@ struct KeyboardButton: View {
 
 struct KeyboardButton_Previews: PreviewProvider {
     static var previews: some View {
-        KeyboardButton(keyCharacter: "", inputSlot: .constant(""), moveNextCol: {})
+        KeyboardButton(keyCharacter: "a", inputSlot: .constant(""), moveNextCol: {})
     }
 }

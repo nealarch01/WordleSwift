@@ -13,8 +13,8 @@ struct Keyboard: View {
     @Binding var isComplete: Bool
     var checkAns: () -> Void
     var body: some View {
-        VStack(spacing: 60) {
-            HStack(spacing: 28) {
+        VStack(spacing: 10) {
+            HStack(spacing: 4) {
                 Group() {
                     KeyboardButton(keyCharacter: "Q", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                     KeyboardButton(keyCharacter: "W", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
@@ -22,17 +22,13 @@ struct Keyboard: View {
                     KeyboardButton(keyCharacter: "R", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                     KeyboardButton(keyCharacter: "T", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                     KeyboardButton(keyCharacter: "Y", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
-                    // purpose of padding is to fix uneven spacings for the last few buttons
                     KeyboardButton(keyCharacter: "U", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
-                        .padding(.leading, 1).padding(.trailing, 1)
                     KeyboardButton(keyCharacter: "I", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
-                        .padding(.leading, 1).padding(.trailing, 2)
                     KeyboardButton(keyCharacter: "O", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
-                        .padding(.leading, 1).padding(.trailing, 1)
                     KeyboardButton(keyCharacter: "P", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 }
             }
-            HStack(spacing: 28) {
+            HStack(spacing: 6) {
                 KeyboardButton(keyCharacter: "A", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 KeyboardButton(keyCharacter: "S", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 KeyboardButton(keyCharacter: "D", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
@@ -43,18 +39,17 @@ struct Keyboard: View {
                 KeyboardButton(keyCharacter: "K", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 KeyboardButton(keyCharacter: "L", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
             }
-            HStack(spacing: 28) {
+            HStack(spacing: 7) {
                 // Special button
                 Button(action: checkAns) {
                     Text("enter")
-                        .background(Rectangle()
-                            .fill(Color.black.opacity(0.6))
-                            .frame(width: 50, height: 68)
-                            .cornerRadius(10)
-                        )
+                        .frame(width: 48, height: 68)
                         .font(.system(size: 14, weight: .bold))
                         .foregroundColor(Color.white)
                 }
+                .background(Color.gray)
+                .cornerRadius(10)
+                
                 KeyboardButton(keyCharacter: "Z", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 KeyboardButton(keyCharacter: "X", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
                 KeyboardButton(keyCharacter: "C", inputSlot: $currentText[currentColumn], moveNextCol: moveNext)
@@ -65,14 +60,13 @@ struct Keyboard: View {
                 // Special button
                 Button(action: moveBack) {
                     Text("del")
-                        .background(Rectangle()
-                            .fill(Color.black.opacity(0.6))
-                            .frame(width: 45, height: 68)
-                            .cornerRadius(10)
-                        )
+                        .frame(width: 44, height: 68)
                         .font(.system(size: 14, weight: .bold))
                         .foregroundColor(Color.white)
                 }
+                .background(Color.gray)
+                .cornerRadius(10)
+                
             }
         }
     }
@@ -113,6 +107,6 @@ struct Keyboard: View {
 
 struct Keyboard_Previews: PreviewProvider {
     static var previews: some View {
-        Keyboard(currentText: .constant(["", "", "", ""]), currentColumn: .constant(0), isComplete: .constant(false), checkAns: {} )
+        Keyboard(currentText: .constant(["", "", "", ""]), currentColumn: .constant(0), isComplete: .constant(false), checkAns: {})
     }
 }
