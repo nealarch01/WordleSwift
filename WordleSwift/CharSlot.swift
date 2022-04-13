@@ -10,6 +10,7 @@ import SwiftUI
 struct CharSlot: View {
     var currentChar: String
     @Binding var slotColor: Color
+    @Binding var isDarkMode: Bool
     @State private var isAnimated: Bool = false
     var body: some View {
         HStack {
@@ -18,7 +19,7 @@ struct CharSlot: View {
             // purpose of putting an empty space to apply max padding (when there is not text in a box, the padding of each box causes uneven spacing
                 .background(
                     Rectangle()
-                        .fill(slotColor.opacity(0.1))
+                        .fill(slotColor == Color.gray ? slotColor.opacity(0.1) : slotColor.opacity(0.9))
                         .frame(width: 70, height: 70)
                         .border(Color.gray, width: 3)
                         .scaleEffect(isAnimated ? 1.2 : 1.0)
@@ -36,7 +37,7 @@ struct CharSlot: View {
                         }
                 )
                 .font(.system(size: 36, weight: .heavy))
-                .foregroundColor(Color.white)
+                .foregroundColor(isDarkMode ? Color.white : Color.black)
             Spacer()
         }
     }
@@ -44,6 +45,6 @@ struct CharSlot: View {
 
 struct CharSlot_Previews: PreviewProvider {
     static var previews: some View {
-        CharSlot(currentChar: "", slotColor: .constant(Color.gray))
+        CharSlot(currentChar: "", slotColor: .constant(Color.gray), isDarkMode: .constant(false))
     }
 }

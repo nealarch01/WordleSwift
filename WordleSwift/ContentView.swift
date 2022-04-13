@@ -51,14 +51,15 @@ struct ContentView: View {
                     }
                 }.padding(.leading, 10).padding(.trailing, 10).padding(.top, 40)
                 Text(infoText)
+                    .foregroundColor(isDarkMode ? Color.white : Color.black)
                     .padding(.top, 10)
             }
             VStack(spacing: 38) {
-                Row(currentText: $rowsData[0], rowSlotColors: $rowsColors[0]) // pass state as binding to child
-                Row(currentText: $rowsData[1], rowSlotColors: $rowsColors[1])
-                Row(currentText: $rowsData[2], rowSlotColors: $rowsColors[2])
-                Row(currentText: $rowsData[3], rowSlotColors: $rowsColors[3])
-                Row(currentText: $rowsData[4], rowSlotColors: $rowsColors[4])
+                Row(currentText: $rowsData[0], rowSlotColors: $rowsColors[0], isDarkMode: $isDarkMode) // pass state as binding to child
+                Row(currentText: $rowsData[1], rowSlotColors: $rowsColors[1], isDarkMode: $isDarkMode)
+                Row(currentText: $rowsData[2], rowSlotColors: $rowsColors[2], isDarkMode: $isDarkMode)
+                Row(currentText: $rowsData[3], rowSlotColors: $rowsColors[3], isDarkMode: $isDarkMode)
+                Row(currentText: $rowsData[4], rowSlotColors: $rowsColors[4], isDarkMode: $isDarkMode)
             }.padding(.trailing, 5).padding(.leading, 5)
             Keyboard(currentText: $rowsData[currentRow],
                      currentColumn: $currentCol,
